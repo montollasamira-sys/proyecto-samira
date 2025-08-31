@@ -258,6 +258,85 @@
             transform: translateY(-2px);
         }
 
+        /* Floating WhatsApp button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.8), 0 0 0 10px rgba(37, 211, 102, 0.1); }
+            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* WhatsApp tooltip */
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .whatsapp-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 5px solid transparent;
+            border-left-color: rgba(0, 0, 0, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.6rem;
+            }
+            
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
+
         .empty-cart {
             text-align: center;
             padding: 40px 20px;
@@ -531,25 +610,51 @@
             box-shadow: 0 15px 40px rgba(184, 134, 11, 0.2);
         }
 
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .client-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #b8860b;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.3);
+        }
+
+        .client-info {
+            flex-grow: 1;
+        }
+
+        .client-name {
+            color: #b8860b;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
         .stars {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
+            font-size: 1.1rem;
             color: #ffd700;
         }
 
         .testimonial-card p {
             color: #e0e0e0;
             line-height: 1.7;
-            margin-bottom: 20px;
             font-style: italic;
             font-size: 1rem;
+            margin-bottom: 15px;
         }
 
-        .client-name {
-            color: #b8860b;
-            font-weight: bold;
+        .testimonial-date {
+            color: #888;
+            font-size: 0.8rem;
             text-align: right;
-            font-size: 0.9rem;
+            font-style: normal;
         }
 
         /* Cart overlay */
@@ -569,6 +674,96 @@
         .cart-overlay.open {
             opacity: 1;
             visibility: visible;
+        }
+
+        /* Credentials section */
+        .credentials-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(75, 0, 130, 0.05));
+        }
+
+        .credentials-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #b8860b;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .credential-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.2);
+        }
+
+        .credential-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            color: #b8860b;
+        }
+
+        .credential-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .credential-title {
+            color: #b8860b;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .credential-description {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .guarantee-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #b8860b;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .guarantee-icon {
+            font-size: 4rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-title {
+            font-size: 1.8rem;
+            color: #b8860b;
+            margin-bottom: 20px;
+        }
+
+        .guarantee-text {
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* Footer */
@@ -738,34 +933,112 @@
                     <h2>Lo que Dicen Nuestros Clientes</h2>
                     <div class="testimonials-grid">
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente1.jpg" alt="Foto de María Elena" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">María Elena R.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"Después de años de problemas en mi relación, decidí probar el amarre de amor. En solo 3 semanas mi pareja cambió completamente, ahora somos más unidos que nunca. ¡Increíble!"</p>
-                            <div class="client-name">- María Elena R.</div>
+                            <div class="testimonial-date">Febrero 2025</div>
                         </div>
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente2.jpg" alt="Foto de Carlos" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">Carlos M.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"El ritual de prosperidad cambió mi vida. Mi negocio que estaba en quiebra ahora está floreciendo. Los clientes llegan solos y las ventas se triplicaron."</p>
-                            <div class="client-name">- Carlos M.</div>
+                            <div class="testimonial-date">Enero 2025</div>
                         </div>
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente3.jpg" alt="Foto de Ana Sofía" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">Ana Sofía L.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"Tenía muchos enemigos en el trabajo que me hacían la vida imposible. Después de la protección espiritual, todo cambió. Ahora tengo paz y respeto."</p>
-                            <div class="client-name">- Ana Sofía L.</div>
+                            <div class="testimonial-date">Diciembre 2024</div>
                         </div>
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente4.jpg" alt="Foto de Roberto" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">Roberto D.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"La limpieza espiritual me liberó de energías muy pesadas que llevaba años cargando. Ahora me siento liviana, feliz y con mucha energía positiva."</p>
-                            <div class="client-name">- Roberto D.</div>
+                            <div class="testimonial-date">Noviembre 2024</div>
                         </div>
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente5.jpg" alt="Foto de Patricia" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">Patricia G.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"Llevaba 2 años desempleado. Después del ritual para conseguir trabajo, en menos de un mes conseguí el empleo de mis sueños con excelente salario."</p>
-                            <div class="client-name">- Patricia G.</div>
+                            <div class="testimonial-date">Octubre 2024</div>
                         </div>
                         <div class="testimonial-card">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <div class="testimonial-header">
+                                <img src="img/cliente6.jpg" alt="Foto de Miguel" class="client-photo">
+                                <div class="client-info">
+                                    <div class="client-name">Miguel A.</div>
+                                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                                </div>
+                            </div>
                             <p>"El trabajo de dominio fue exacto. La persona que necesitaba que tomara una decisión importante finalmente lo hizo, tal como yo quería. Muy profesional."</p>
-                            <div class="client-name">- Miguel A.</div>
+                            <div class="testimonial-date">Septiembre 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Credentials Section -->
+                <div class="credentials-section">
+                    <h2>Nuestra Experiencia y Credenciales</h2>
+                    <div class="credentials-grid">
+                        <div class="credential-card">
+                            <span class="credential-icon">🏆</span>
+                            <div class="credential-number">15+</div>
+                            <div class="credential-title">Años de Experiencia</div>
+                            <div class="credential-description">Dedicados al arte del tarot y la ayuda espiritual desde 2009</div>
+                        </div>
+                        <div class="credential-card">
+                            <span class="credential-icon">👥</span>
+                            <div class="credential-number">2,500+</div>
+                            <div class="credential-title">Clientes Atendidos</div>
+                            <div class="credential-description">Personas han confiado en nosotros para resolver sus problemas</div>
+                        </div>
+                        <div class="credential-card">
+                            <span class="credential-icon">📜</span>
+                            <div class="credential-number">3</div>
+                            <div class="credential-title">Certificaciones</div>
+                            <div class="credential-description">Tarot Rider-Waite, Santería Tradicional y Reiki Nivel III</div>
+                        </div>
+                        <div class="credential-card">
+                            <span class="credential-icon">✅</span>
+                            <div class="credential-number">98%</div>
+                            <div class="credential-title">Efectividad</div>
+                            <div class="credential-description">De nuestros clientes reportan resultados positivos</div>
+                        </div>
+                    </div>
+
+                    <div class="guarantee-section">
+                        <div class="guarantee-icon">🔒</div>
+                        <div class="guarantee-title">Garantía de Confidencialidad Total</div>
+                        <div class="guarantee-text">
+                            Tu privacidad es sagrada para nosotros. Todos nuestros servicios se realizan bajo estricta confidencialidad. 
+                            Jamás compartimos información personal, consultas o trabajos realizados con terceros. 
+                            Tu confianza es nuestro compromiso más importante. Trabajamos con discreción absoluta y 
+                            respeto por tu intimidad espiritual.
                         </div>
                     </div>
                 </div>
@@ -856,7 +1129,7 @@
                     <h2>Nuestros Trabajos Espirituales</h2>
                     <div class="services-grid">
                         <div class="service-card">
-                            <img src="img/trabajo6.jpg" alt="Ritual de Protección" class="service-image">
+                            <img src="img/trabajo1.jpg" alt="Ritual de Protección" class="service-image">
                             <span class="service-icon">🛡️</span>
                             <h3>Ritual de Protección Completo</h3>
                             <p>Protección total contra enemigos, envidias, mal de ojo y energías negativas. Incluye velas, amuletos y limpieza energética.</p>
@@ -963,6 +1236,12 @@
             <p>🌟 Tu destino está en nuestras manos 🌟</p>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <button class="whatsapp-float" id="whatsappFloat">
+        💬
+        <div class="whatsapp-tooltip">¡Consulta ahora!</div>
+    </button>
 
     <script>
         // Carousel functionality
