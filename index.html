@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Tarot, Rituales y Ayuda Espiritual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Base responsive container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #333;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            color: #b8860b;
+            background: rgba(184, 134, 11, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .nav-text {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #b8860b;
+            text-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.5));
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, #4a0e4e, #81007f);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(129, 0, 127, 0.4);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff4757;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(75, 0, 130, 0.1), transparent);
+        }
+
+        .trabajos-hero {
+            padding: 40px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(75, 0, 130, 0.1), transparent);
+            margin-bottom: 40px;
+        }
+
+        .trabajos-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #b8860b, #ffd700, #b8860b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(184, 134, 11, 0.3);
+        }
+
+        .trabajos-hero p {
+            font-size: 1.3rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonials-section {
+            padding-top: 80px;
+        }
+
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #b8860b;
+        }
+
+        /* Image Carousel */
+        .image-carousel, .hero {
+            padding: 60px 0;
+        }
+        
+        .hero h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #b8860b;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.3);
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            background: #000;
+            filter: brightness(0.8);
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: #ffd700;
+            padding: 30px 20px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(184, 134, 11, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #b8860b;
+            transform: scale(1.2);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.2);
+        }
+
+        .stars {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .testimonial-card p {
+            color: #e0e0e0;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        .client-name {
+            color: #b8860b;
+            font-weight: bold;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* Services and Consultations */
+        .services, .consultations {
+            padding: 60px 0;
+        }
+
+        .services h2, .consultations h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #b8860b;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.8));
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(184, 134, 11, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #b8860b;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .service-card p {
+            margin-bottom: 20px;
+            color: #ccc;
+            line-height: 1.7;
+        }
+
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #b8860b;
+            margin-bottom: 20px;
+        }
+
+        .add-to-cart {
+            background: linear-gradient(135deg, #4a0e4e, #81007f);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #5a1e5e, #91008f);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #b8860b;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .cart-header h3 {
+            color: #b8860b;
+            font-size: 1.8rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info h4 {
+            color: #ffd700;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            background: #4a0e4e;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #b8860b;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #b8860b, #ffd700);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            margin-top: 60px;
+        }
+
+        /* Responsive - Enhanced for all devices */
+        @media (max-width: 1024px) {
+            .services-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .carousel-wrapper { height: 350px; }
+            .logo { font-size: 1.6rem; }
+        }
+        @media (max-width: 900px) {
+            .header-content { flex-direction: column; gap: 20px; }
+            .nav-menu { order: 2; }
+            .cart-btn { order: 3; }
+        }
+        @media (max-width: 768px) {
+            .trabajos-hero h1 { font-size: 2.5rem; }
+            .services-grid, .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+            .nav-menu { gap: 15px; justify-content: center; flex-wrap: wrap; }
+            .nav-item { font-size: 0.8rem; padding: 8px 12px; min-width: 80px; }
+            .nav-icon { font-size: 1.3rem; }
+            .logo { font-size: 1.4rem; text-align: center; }
+            .logo img { height: 40px; }
+            .carousel-wrapper { height: 280px; }
+            .slide-caption { font-size: 1rem; padding: 20px 15px 15px; }
+            .service-card, .testimonial-card { padding: 25px; }
+            .cart-content { width: 95%; padding: 25px; max-height: 85vh; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 15px; }
+            .carousel-wrapper { height: 220px; }
+            .carousel-container { margin: 0 10px; }
+            .slide-caption { font-size: 0.9rem; padding: 15px 10px 10px; }
+            .trabajos-hero h1 { font-size: 2rem; }
+            .hero h2, .services h2, .consultations h2, .testimonials-section h2 { font-size: 2rem; }
+            .trabajos-hero p { font-size: 1.1rem; }
+            .logo { font-size: 1.2rem; flex-direction: column; gap: 10px; }
+            .logo img { height: 35px; }
+            .nav-item { font-size: 0.7rem; padding: 6px 10px; min-width: 70px; }
+            .nav-icon { font-size: 1.1rem; }
+            .service-card, .testimonial-card { padding: 20px; }
+            .service-card h3 { font-size: 1.3rem; }
+            .service-price { font-size: 1.6rem; }
+        }
+        @media (max-width: 375px) {
+            .carousel-wrapper { height: 200px; }
+            .slide-caption { font-size: 0.8rem; padding: 12px 8px 8px; }
+            .nav-menu { gap: 8px; }
+            .nav-item { font-size: 0.65rem; padding: 5px 8px; min-width: 60px; }
+            .cart-content { width: 98%; padding: 20px; }
+        }
+        @media (max-width: 320px) {
+            .carousel-wrapper { height: 180px; }
+            .trabajos-hero h1 { font-size: 1.8rem; }
+            .hero h2, .services h2, .consultations h2, .testimonials-section h2 { font-size: 1.8rem; }
+        }
+        @media (max-height: 500px) and (orientation: landscape) {
+            .carousel-wrapper { height: 180px; }
+            .trabajos-hero { padding: 20px 0 30px; }
+            .trabajos-hero h1 { font-size: 2rem; }
+            .hero { padding: 30px 0; }
+            .testimonials-section { padding-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Logo">
+                    TAROT, RITUALES Y AYUDA ESPIRITUAL
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="#inicio" class="nav-item">
+                        <div class="nav-icon">🏠</div>
+                        <div class="nav-text">Inicio</div>
+                    </a>
+                    <a href="#trabajos" class="nav-item">
+                        <div class="nav-icon">⚡</div>
+                        <div class="nav-text">Trabajos</div>
+                    </a>
+                    <a href="#consultas" class="nav-item">
+                        <div class="nav-icon">🔮</div>
+                        <div class="nav-text">Consultas</div>
+                    </a>
+                </nav>
+
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Carrito
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="container">
+                <h2>Nuestros Trabajos Realizados</h2>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-slide active">
+                            <img src="img/trabajo1.jpg" alt="Ritual de Protección">
+                            <div class="slide-caption">Ritual de Protección Completo</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/trabajo2.jpg" alt="Amarre de Amor">
+                            <div class="slide-caption">Amarre de Amor con Elementos Naturales</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/trabajo3.jpg" alt="Ritual de Prosperidad">
+                            <div class="slide-caption">Ritual de Prosperidad y Abundancia</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/trabajo4.jpg" alt="Limpieza Energética">
+                            <div class="slide-caption">Limpieza Energética con Velas</div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="img/trabajo5.jpg" alt="Lectura de Tarot">
+                            <div class="slide-caption">Sesión de Tarot Profesional</div>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                        <span class="indicator" data-slide="3"></span>
+                        <span class="indicator" data-slide="4"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container testimonials-section">
+                <h2>Lo que Dicen Nuestros Clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Después de años de problemas en mi relación, decidí probar el amarre de amor. En solo 3 semanas mi pareja cambió completamente, ahora somos más unidos que nunca. ¡Increíble!"</p>
+                        <div class="client-name">- María Elena R.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"El ritual de prosperidad cambió mi vida. Mi negocio que estaba en quibra ahora está floreciendo. Los clientes llegan solos y las ventas se triplicaron."</p>
+                        <div class="client-name">- Carlos M.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Tenía muchos enemigos en el trabajo que me hacían la vida imposible. Después de la protección espiritual, todo cambió. Ahora tengo paz y respeto."</p>
+                        <div class="client-name">- Ana Sofía L.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"La limpieza espiritual me liberó de energías muy pesadas que llevaba años cargando. Ahora me siento liviana, feliz y con mucha energía positiva."</p>
+                        <div class="client-name">- Roberto D.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Llevaba 2 años desempleado. Después del ritual para conseguir trabajo, en menos de un mes conseguí el empleo de mis sueños con excelente salario."</p>
+                        <div class="client-name">- Patricia G.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"El trabajo de dominio fue exacto. La persona que necesitaba que tomara una decisión importante finalmente lo hizo, tal como yo quería. Muy profesional."</p>
+                        <div class="client-name">- Miguel A.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services" id="trabajos">
+            <div class="container">
+                <div class="trabajos-hero">
+                    <h1>Trabajos Espirituales Especializados</h1>
+                    <p>Descubre el poder de la magia ancestral con nuestros servicios especializados. Transformamos energías y destinos con sabiduría milenaria.</p>
+                </div>
+
+                <h2>Nuestros Servicios Especializados</h2>
+                <div class="services-grid">
+                    <div class="service-card"><div class="service-icon">💕</div><h3>Amarres de Amor</h3><p>Atrae el amor verdadero o fortalece relaciones existentes. Trabajos personalizados con elementos naturales y lunares.</p><div class="service-price">$200 USD</div><button class="add-to-cart" onclick="addToCart('Amarres de Amor', 200)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💞</div><h3>Unión de Pareja</h3><p>Fortalece vínculos amorosos y restaura la armonía en la relación. Ideal para reconciliaciones y matrimonios.</p><div class="service-price">$180 USD</div><button class="add-to-cart" onclick="addToCart('Unión de Pareja', 180)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💔</div><h3>Separación y Alejamiento</h3><p>Aleja personas tóxicas o terceras personas que interfieren en tu felicidad. Corta lazos negativos.</p><div class="service-price">$220 USD</div><button class="add-to-cart" onclick="addToCart('Separación y Alejamiento', 220)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💰</div><h3>Rituales de Prosperidad</h3><p>Abre los caminos hacia la abundancia y el éxito financiero. Incluye talismanes de la suerte y rituales lunares.</p><div class="service-price">$180 USD</div><button class="add-to-cart" onclick="addToCart('Rituales de Prosperidad', 180)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🤑</div><h3>Atracción de Dinero</h3><p>Rituales específicos para atraer dinero urgente y oportunidades económicas. Resultados en 15-30 días.</p><div class="service-price">$250 USD</div><button class="add-to-cart" onclick="addToCart('Atracción de Dinero', 250)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🏢</div><h3>Éxito en Negocios</h3><p>Potencia tu negocio o empresa. Atrae clientes, mejora las ventas y asegura el éxito comercial.</p><div class="service-price">$300 USD</div><button class="add-to-cart" onclick="addToCart('Éxito en Negocios', 300)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🛡️</div><h3>Protección Personal</h3><p>Escudo energético contra enemigos, envidias y malas energías. Incluye amuletos protectores personalizados.</p><div class="service-price">$150 USD</div><button class="add-to-cart" onclick="addToCart('Protección Personal', 150)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🏠</div><h3>Protección del Hogar</h3><p>Blindaje espiritual completo para tu hogar y familia. Aleja intrusos astrales y energías negativas.</p><div class="service-price">$200 USD</div><button class="add-to-cart" onclick="addToCart('Protección del Hogar', 200)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🌿</div><h3>Rituales de Sanación</h3><p>Trabajos energéticos para mejorar la salud física y mental. Complemento ideal a tratamientos médicos.</p><div class="service-price">$180 USD</div><button class="add-to-cart" onclick="addToCart('Rituales de Sanación', 180)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💪</div><h3>Fortaleza y Energía</h3><p>Recupera tu vitalidad y fuerza interior. Ideal para superar depresión, fatiga y agotamiento emocional.</p><div class="service-price">$160 USD</div><button class="add-to-cart" onclick="addToCart('Fortaleza y Energía', 160)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🔥</div><h3>Limpieza Espiritual</h3><p>Elimina energías negativas, maleficios y bloqueos espirituales. Renovación completa del aura.</p><div class="service-price">$120 USD</div><button class="add-to-cart" onclick="addToCart('Limpieza Espiritual', 120)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">✨</div><h3>Corte de Brujería</h3><p>Rompe hechizos, maldiciones y trabajos negativos hechos contra ti. Devuelve el mal al emisor.</p><div class="service-price">$280 USD</div><button class="add-to-cart" onclick="addToCart('Corte de Brujería', 280)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">👑</div><h3>Dominio Personal</h3><p>Logra que esa persona especial tome las decisiones que deseas. Trabajo discreto y efectivo.</p><div class="service-price">$240 USD</div><button class="add-to-cart" onclick="addToCart('Dominio Personal', 240)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🎯</div><h3>Control Mental</h3><p>Influye en pensamientos y decisiones de personas específicas. Ideal para situaciones laborales o legales.</p><div class="service-price">$320 USD</div><button class="add-to-cart" onclick="addToCart('Control Mental', 320)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">⚖️</div><h3>Justicia Divina</h3><p>Para casos legales, juicios y situaciones donde necesitas que prevalezca la justicia a tu favor.</p><div class="service-price">$260 USD</div><button class="add-to-cart" onclick="addToCart('Justicia Divina', 260)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💼</div><h3>Conseguir Empleo</h3><p>Abre puertas laborales y asegura el trabajo que deseas. Mejora tu presencia y capacidades profesionales.</p><div class="service-price">$170 USD</div><button class="add-to-cart" onclick="addToCart('Conseguir Empleo', 170)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">⚔️</div><h3>Trabajos de Venganza</h3><p>Para quienes te han hecho daño. La justicia espiritual actúa devolviendo el mal recibido multiplicado.</p><div class="service-price">$350 USD</div><button class="add-to-cart" onclick="addToCart('Trabajos de Venganza', 350)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🧘</div><h3>Desarrollo Psíquico</h3><p>Despierta y fortalece tus habilidades psíquicas naturales. Intuición, clarividencia y conexión espiritual.</p><div class="service-price">$200 USD</div><button class="add-to-cart" onclick="addToCart('Desarrollo Psíquico', 200)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">⚡</div><h3>Ritual de Poder Personal</h3><p>Fortalece tu energía interior y confianza. Despertar de habilidades latentes y empoderamiento espiritual.</p><div class="service-price">$250 USD</div><button class="add-to-cart" onclick="addToCart('Ritual de Poder Personal', 250)">Agregar al Carrito</button></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="consultations" id="consultas">
+            <div class="container">
+                <h2>Consultas Espirituales</h2>
+                <div class="services-grid">
+                    <div class="service-card"><div class="service-icon">🃏</div><h3>Consulta de Tarot Básica</h3><p>Lectura de 3 cartas para respuestas rápidas sobre tu situación actual. Ideal para preguntas específicas.</p><div class="service-price">$30 USD</div><button class="add-to-cart" onclick="addToCart('Consulta de Tarot Básica', 30)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🌟</div><h3>Lectura de Cartas Españolas</h3><p>Consulta tradicional con baraja española. Revelación de aspectos del amor, trabajo y salud.</p><div class="service-price">$45 USD</div><button class="add-to-cart" onclick="addToCart('Lectura de Cartas Españolas', 45)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">🔍</div><h3>Consulta Videncia</h3><p>Sesión de clarividencia para conectar con tu energía y recibir mensajes del plano espiritual.</p><div class="service-price">$60 USD</div><button class="add-to-cart" onclick="addToCart('Consulta Videncia', 60)">Agregar al Carrito</button></div>
+                    <div class="service-card"><div class="service-icon">💎</div><h3>Lectura con Runas</h3><p>Antigua sabiduría nórdica para guiarte en decisiones importantes y revelar caminos ocultos.</p><div class="service-price">$55 USD</div><button class="add-to-cart" onclick="addToCart('Lectura con Runas', 55)">Agregar al Carrito</button></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>🛒 Tu Carrito</h3>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-total" id="cart-total">Total: $0 USD</div>
+            <button class="checkout-btn" onclick="checkout()">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tarot, Rituales y Ayuda Espiritual. Todos los derechos reservados.</p>
+            <p>🌟 Tu destino está en nuestras manos 🌟</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        function addToCart(serviceName, price) {
+            const existingItem = cart.find(item => item.name === serviceName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: serviceName, price: price, quantity: 1 });
+            }
+            updateCartDisplay();
+        }
+
+        function removeFromCart(serviceName) {
+            const itemIndex = cart.findIndex(item => item.name === serviceName);
+            if (itemIndex > -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+            }
+            updateCartDisplay();
+        }
+
+        function updateQuantity(serviceName, change) {
+            const item = cart.find(item => item.name === serviceName);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    const itemIndex = cart.findIndex(i => i.name === serviceName);
+                    cart.splice(itemIndex, 1);
+                }
+            }
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+                cartTotal.textContent = 'Total: $0 USD';
+                return;
+            }
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p>$${item.price} USD cada uno</p>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `Total: $${total} USD`;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemsList = cart.map(item => `${item.name} (x${item.quantity})`).join('\n');
+            alert(`Gracias por tu compra!\n\nServicios seleccionados:\n${itemsList}\n\nTotal: $${total} USD\n\nNos pondremos en contacto contigo para coordinar los servicios.`);
+            cart = [];
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        document.getElementById('cart-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
+            }
+        });
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 4000);
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        updateCartDisplay();
+    </script>
+</body>
+</html>
